@@ -1,0 +1,68 @@
+/********************************************/
+/*(タイトル)肥満率計算プログラム(java)      */                                             
+/*(作成日)2/12				                */
+/*(名前)郡山 顕孝			                */
+/********************************************/
+
+package kadai023;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Kadai023 {
+
+    public static void main(String[] args) {
+
+        // 変数定義
+	    double height;     // 身長
+        double weight;     // 体重
+        double weightAve;  // 平均体重
+        double fat;        // 肥満率
+
+		// エラー判定
+		try {
+
+		    // 身長入力
+		    System.out.print("身長入力 (例:175cmは175.0) : ");
+		    Scanner sc = new Scanner(System.in);
+		    height = sc.nextDouble();
+
+		    // 体重入力
+		    System.out.print("体重入力(例:60kgは60.0) : ");
+		    Scanner sc2 = new Scanner(System.in);
+		    weight = sc2.nextDouble();
+
+		    // 肥満率計算
+		    weightAve = 22 * Math.pow(height / 100, 2);
+		    fat = (weight - weightAve) / weightAve * 100;
+
+		    // 出力
+		    System.out.print("あなたの肥満率は");
+		    System.out.printf("%2.2f", fat);
+		    System.out.println("%です。");
+
+		    // 太りすぎかどうかの判定
+		    if(fat >= 25) {
+				System.out.println("あなたは太りすぎです。");
+		    }
+
+		}catch(InputMismatchException e) {
+		    System.out.println("入力値エラー、最度実行をし直してください");
+	    }finally{
+	        // scannerのクローズ
+		    sc.close();
+	        sc2.close();
+	    }
+    }
+
+}
+
+
+/*  実行結果
+
+身長入力 (例:175cmは175.0) : 164
+体重入力(例:60kgは60.0) : 54
+あなたの肥満率は-8.74%です。
+
+*/
+
